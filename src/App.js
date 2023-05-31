@@ -1,46 +1,33 @@
-// import './categories.styles.css';
+import React from 'react';
+
+import './categories.styles.scss';
+// categories data imported from file and stored in indentifier as an array
+import categories from './categories.json';
+
+import Category from './components/category-item/category-item.component';
+
 
 const App = () => {
 
-  // data for categories
-  const categories = [
-    {
-      id: 1,
-      title: 'Hats',
-    },
-    {
-      id: 2,
-      title: 'Jackets',
-    },
-    {
-      id: 3,
-      title: 'Trainers',
-    },
-    {
-      id: 4,
-      title: 'Womens',
-    },
-    {
-      id: 5,
-      title: 'Mens',
-    }
-  ]
+  
   return (
+  <>
    <div className="categories-container">
     {/* map through each category in the categories array of category objects */}
     {/* desctructured off directly to obtain the keys from categories */}
-      {categories.map(({title, id}) => (
+      {categories.map(({title, id, imageUrl}) => (
         // return the JSX structure of the categories
           <div key={id} className="category-container">
-            <div className="background-image" />
-            <div className="category-body-container">
-              <h2>{title}</h2>
-              <p>Shop Now</p>
-            </div>
+            <div className="background-image" style={{
+              backgroundImage: `url(${imageUrl})`
+            }}/>
+            <CategoryItem title={title}/>
          </div>
       ))}
       {/* end categories container */}
     </div>
+    
+    </>
   );
 }
 
